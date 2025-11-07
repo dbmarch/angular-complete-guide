@@ -1,4 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
+import { viewChild } from '@angular/core';
 
 import { ButtonComponent } from '../../../shared/button/button.component';
 import { ControlComponent } from "../../../shared/control/control.component";
@@ -13,13 +14,14 @@ import { FormsModule } from '@angular/forms';
 })
 export class NewTicketComponent {
 
-    @ViewChild('form')form?:ElementRef<HTMLFormElement>;
+    //@ViewChild('form')form?:ElementRef<HTMLFormElement>;
+    private form = viewChild.required<ElementRef<HTMLFormElement>>('form')
 
     onSubmit(title:string, ticketText:string) {
         console.log ('title: ', title);
         console.log ('ticketText: ', ticketText);
 
         // get the native form element.  only call reset if it is not undefined
-        this.form?.nativeElement.reset();
+        this.form().nativeElement.reset();
     }
 }
