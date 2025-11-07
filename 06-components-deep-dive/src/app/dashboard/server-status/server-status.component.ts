@@ -7,15 +7,16 @@ import { Component, DestroyRef, OnDestroy, OnInit, inject } from '@angular/core'
   templateUrl: './server-status.component.html',
   styleUrl: './server-status.component.css',
 })
-export class ServerStatusComponent implements OnInit {
+export class ServerStatusComponent implements OnInit, OnDestroy {
   currentStatus: 'online' | 'offline' | 'unknown' = 'offline';
   private destroyRef = inject(DestroyRef);
+  private interval?: NodeJS.Timeout;
 
   constructor() {}
 
   ngOnInit() {
     console.log('ON INIT');
-    const interval = setInterval(() => {
+    this.interval = setInterval(() => {
       const rnd = Math.random(); // 0 - 0.99999999999999
 
       if (rnd < 0.5) {
@@ -28,15 +29,15 @@ export class ServerStatusComponent implements OnInit {
     }, 5000);
 
     this.destroyRef.onDestroy(() => {
-      clearInterval(interval);
+      clearInterval(this.interval);
     });
-  }
 
+  }
   ngAfterViewInit() {
     console.log('AFTER VIEW INIT');
   }
 
-  // ngOnDestroy() {
-  //   clearTimeout(this.interval);
-  // }
+  ngOnDestroy() {
+    clearTimeout(this.interval);
+  }
 }
