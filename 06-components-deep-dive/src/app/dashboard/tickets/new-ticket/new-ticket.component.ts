@@ -6,6 +6,7 @@ import { ControlComponent } from "../../../shared/control/control.component";
 import { FormsModule } from '@angular/forms';
 
 @Component({
+    standalone: true,
     selector: 'app-new-ticket',
     templateUrl: './new-ticket.component.html',
     styleUrl: './new-ticket.component.css',

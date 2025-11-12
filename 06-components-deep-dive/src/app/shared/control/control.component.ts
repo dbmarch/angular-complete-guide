@@ -7,10 +7,13 @@ import {
   inject,
   input,
   ContentChild,
-  contentChild
+  contentChild,
+  afterEveryRender,
+  afterNextRender,
 } from '@angular/core';
 
 @Component({
+    standalone: true,
     selector: 'app-control',
     imports: [],
     templateUrl: './control.component.html',
@@ -30,6 +33,16 @@ export class ControlComponent {
   private el = inject(ElementRef);
   // @ContentChild('input') private control?: ElementRef<HTMLInputElement | HTMLTextAreaElement>;
     private control = contentChild<ElementRef<HTMLInputElement | HTMLTextAreaElement>>('input');
+
+  constructor() {
+    console.log ("control constructor")
+    afterEveryRender(() => {
+      console.log('afterEveryRender')
+    })
+    afterNextRender(()=>{
+      console.log('afterNextRender');
+    });
+  }
 
   onClick() {
     // console.log('Clicked!');
