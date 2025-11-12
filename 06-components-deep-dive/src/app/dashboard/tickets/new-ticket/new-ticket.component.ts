@@ -7,7 +7,6 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
     selector: 'app-new-ticket',
-    standalone: true,
     templateUrl: './new-ticket.component.html',
     styleUrl: './new-ticket.component.css',
     imports: [ButtonComponent, ControlComponent, FormsModule]
