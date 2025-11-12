@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, AfterContentInit, contentChild} from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit, AfterContentInit, contentChild, Output, EventEmitter, output} from '@angular/core';
 import { viewChild } from '@angular/core';
 
 import { ButtonComponent } from '../../../shared/button/button.component';
@@ -15,31 +15,32 @@ import { FormsModule } from '@angular/forms';
 export class NewTicketComponent implements AfterViewInit {
 
     //@ViewChild('form')form?:ElementRef<HTMLFormElement>;
-    private form = viewChild.required<ElementRef<HTMLFormElement>>('form')
+    private form = viewChild.required<ElementRef<HTMLFormElement>>('form');
+
+    // @Output() add = new EventEmitter();
+    add = output<{title: string; text: string} >();
 
     ngOnInit() {
-        console.log('OnInit');
-        console.log(this.form().nativeElement)
+        // console.log('OnInit');
+        // console.log(this.form().nativeElement)
         //console.log(this.form?.nativeElement)
 
     }
 
     ngAfterViewInit(): void{
-        console.log('AferViewInit');
-        console.log(this.form().nativeElement)
+        // console.log('AferViewInit');
+        // console.log(this.form().nativeElement)
         //console.log(this.form?.nativeElement)
     }
 
     private control   = contentChild<ElementRef<HTMLInputElement | HTMLTextAreaElement>>('input');
 
-    ngAfterContentInit() {
-
-    }
+    ngAfterContentInit() {}
 
     onSubmit(title:string, ticketText:string) {
         console.log ('title: ', title);
         console.log ('ticketText: ', ticketText);
-
+        this.add.emit({title:title, text: ticketText});
         // get the native form element.  only call reset if it is not undefined
         this.form().nativeElement.reset();
     }

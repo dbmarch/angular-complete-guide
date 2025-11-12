@@ -36,12 +36,12 @@ export class ControlComponent {
 
   constructor() {
     console.log ("control constructor")
-    afterEveryRender(() => {
-      console.log('afterEveryRender')
-    })
-    afterNextRender(()=>{
-      console.log('afterNextRender');
-    });
+    // afterEveryRender(() => {
+    //   console.log('afterEveryRender')
+    // })
+    // afterNextRender(()=>{
+    //   console.log('afterNextRender');
+    // });
   }
 
   onClick() {
