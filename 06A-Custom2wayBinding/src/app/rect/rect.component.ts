@@ -1,4 +1,4 @@
-import { Component, input} from '@angular/core';
+import { Component, input, output} from '@angular/core';
 
 @Component({
   selector: 'app-rect',
@@ -10,8 +10,12 @@ import { Component, input} from '@angular/core';
 export class RectComponent {
   
   size = input.required< {width: string; height: string}>();
+  sizeChange=output< {width: string; height: string}>();
 
   onReset() {
-    // ...
+    this.sizeChange.emit({
+      width: '200',
+      height: '200'
+    })
   }
 }
