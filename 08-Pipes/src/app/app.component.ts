@@ -22,8 +22,13 @@ export class AppComponent {
     25, 37, 19, -4, 28, 21, 19, 28, 33, 31, 9, 11, 5, -12, -5,
   ];
 
+  constructor () {
+    this.historicTemperatures.sort((a,b)=>a > b ? 1 : -1)
+    }
+
   onReset(index: number) {
     this.historicTemperatures[index] = 18;
+    // with the addition of pure: false on the pipe we will transform all the time.
 
     // to detect changes within an array the entire array needs to be updated.
     // const newTemps = [...this.historicTemperatures]
