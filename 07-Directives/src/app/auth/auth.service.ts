@@ -9,12 +9,15 @@ export class AuthService {
   activePermission = signal<Permission>('guest');
 
   authenticate(email: string, password: string) {
-    console.log(email, password);
+    console.log('authenticate', email, password);
     if (email === 'admin@example.com' && password === 'admin') {
+      console.log("Setting to admin")
       this.activePermission.set('admin');
     } else if (email === 'user@example.com' && password === 'user') {
+      console.log("Setting to user")
       this.activePermission.set('user');
     } else {
+      console.log("Setting to guest")
       this.activePermission.set('guest');
     }
   }
