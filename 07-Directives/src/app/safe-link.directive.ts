@@ -17,7 +17,7 @@ constructor() {
 }
 
 onConfirmLeavePage(event: MouseEvent) {
-   console.log ('onConfirmLeavePage', event)
+   // console.log ('onConfirmLeavePage', event)
    const wantsToLeave = window.confirm('Do you want to leave the app?');
    if (wantsToLeave) {
       const address = this.hostElementRef.nativeElement.href;
