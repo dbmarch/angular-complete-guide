@@ -8,6 +8,7 @@ import { AuthService } from './auth.service';
     imports: [FormsModule],
     templateUrl: './auth.component.html',
     styleUrl: './auth.component.css',
+    standalone: true,
     hostDirectives: [LogDirective]
 })
 export class AuthComponent {
