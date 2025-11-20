@@ -4,12 +4,11 @@ import { LogDirective } from '../log.directive';
 import { AuthService } from './auth.service';
 
 @Component({
-  selector: 'app-auth',
-  standalone: true,
-  imports: [FormsModule],
-  templateUrl: './auth.component.html',
-  styleUrl: './auth.component.css',
-  hostDirectives: [LogDirective]
+    selector: 'app-auth',
+    imports: [FormsModule],
+    templateUrl: './auth.component.html',
+    styleUrl: './auth.component.css',
+    hostDirectives: [LogDirective]
 })
 export class AuthComponent {
   email = signal('');
