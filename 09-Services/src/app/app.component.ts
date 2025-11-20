@@ -5,6 +5,8 @@ import { TasksComponent } from './tasks/tasks.component';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    imports: [TasksComponent]
+    imports: [TasksComponent],
+    standalone: true
+
 })
 export class AppComponent {}
