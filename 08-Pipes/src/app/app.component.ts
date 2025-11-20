@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import { TemperaturePipe } from './temperature.pipe';
+import {SortPipe} from './sort.pipe'
 
 @Component({
   selector: 'app-root',
   standalone: true,
   templateUrl: './app.component.html',
-  imports: [ DatePipe, DecimalPipe, TemperaturePipe ]
+  imports: [ DatePipe, DecimalPipe, TemperaturePipe, SortPipe ]
 })
 export class AppComponent {
   currentDate = new Date();
@@ -23,5 +24,10 @@ export class AppComponent {
 
   onReset(index: number) {
     this.historicTemperatures[index] = 18;
+
+    // to detect changes within an array the entire array needs to be updated.
+    // const newTemps = [...this.historicTemperatures]
+    // newTemps[index]  = 18;
+    // this.historicTemperatures = newTemps;
   }
 }
