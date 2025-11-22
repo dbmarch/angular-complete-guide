@@ -9,6 +9,6 @@ import { TasksService } from './tasks.service';
     templateUrl: './tasks.component.html',
     standalone: true,
     imports: [NewTaskComponent, TasksListComponent],
-    providers: [TasksService]
+    // providers: [TasksService]
 })
 export class TasksComponent {}
