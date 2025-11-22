@@ -2,10 +2,10 @@ import { Injectable, signal} from '@angular/core'
 import { Task } from './task.model';
 import { TaskStatus } from './task.model';
 
-
-@Injectable({
-   providedIn: 'root'
-})
+// Comment out and added to main.ts for global singleton instance
+// @Injectable({
+//    providedIn: 'root'
+// })
 export class TasksService{
    private tasks = signal<Task[]>([]);
    allTasks = this.tasks.asReadonly();
