@@ -5,5 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class LoggingService {
 
-  constructor() { }
+  log(message:string) {
+    const timestamp = new Date().toLocaleTimeString();
+    console.log(`[${timestamp}] ${message}`);
+  }
 }
