@@ -4,9 +4,9 @@ import { TaskStatus } from './task.model';
 import { LoggingService } from '../logging.service';
 
 // Comment out and added to main.ts for global singleton instance
-@Injectable({
-   providedIn: 'root'
-})
+// @Injectable({
+//    providedIn: 'root'
+// })
 export class TasksService{
    private tasks = signal<Task[]>([]);
    allTasks = this.tasks.asReadonly();

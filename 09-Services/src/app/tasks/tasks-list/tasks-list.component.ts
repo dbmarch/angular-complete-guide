@@ -2,6 +2,8 @@ import { Component, signal, inject, computed } from '@angular/core';
 
 import { TaskItemComponent } from './task-item/task-item.component';
 import { TasksService } from '../tasks.service';
+import { TASK_STATUS_OPTIONS } from '../task.model';
+import {TasksServiceToken} from '../../../main';
 
 
 @Component({
@@ -9,10 +11,11 @@ import { TasksService } from '../tasks.service';
     templateUrl: './tasks-list.component.html',
     styleUrl: './tasks-list.component.css',
     standalone: true,
-    imports: [TaskItemComponent]
+    imports: [TaskItemComponent],
+    providers : [TasksService]
 })
 export class TasksListComponent {
-  private tasksService = inject(TasksService);
+  private tasksService = inject<TasksService>(TasksServiceToken);
   selectedFilter = signal<string>('all');
   // tasks = this.tasksService.allTasks;
   tasks = computed(() => {

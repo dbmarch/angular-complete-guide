@@ -1,6 +1,6 @@
 import { Component, computed, input, inject} from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TasksService } from '../../tasks.service';
+import { TasksServiceToken } from '../../../../main';
 import { Task, TaskStatus } from '../../task.model';
 
 @Component({
@@ -11,7 +11,7 @@ import { Task, TaskStatus } from '../../task.model';
     styleUrl: './task-item.component.css'
 })
 export class TaskItemComponent {
-  private tasksService = inject(TasksService);
+  private tasksService = inject(TasksServiceToken);
 
   task = input.required<Task>();
   taskStatus = computed(() => {
