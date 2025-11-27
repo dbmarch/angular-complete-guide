@@ -16,6 +16,10 @@ export const TaskStatusOptions: TaskStatusOptions= [
   { value: 'done', taskStatus: 'DONE', text: 'Done' },
 ];  
 
+export const taskStatusOptionsProvider: Provider = {
+  provide: TASK_STATUS_OPTIONS,
+  useValue: TaskStatusOptions
+};
 
 export interface Task {
   id: string;
