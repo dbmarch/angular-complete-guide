@@ -1,21 +1,22 @@
 import { Component, ChangeDetectionStrategy, inject} from '@angular/core';
 import { MessagesService } from '../messages.service';
-import { AsyncPipe } from '@angular/common';
+// import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-messages-list',
   standalone: true,
-  imports: [AsyncPipe],
+  // imports: [AsyncPipe],
   templateUrl: './messages-list.component.html',
   styleUrl: './messages-list.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MessagesListComponent  {
   private messagesService = inject(MessagesService);
-  messages$ = this.messagesService.messages$;
+  // messages$ = this.messagesService.messages$;
+
 
   // messages: string[] = [];
-  // messages = this.messagesService.allMessages;
+  messages = this.messagesService.allMessages;
   // get messages() {
   //   return this.messagesService.allMessages;
   // }
