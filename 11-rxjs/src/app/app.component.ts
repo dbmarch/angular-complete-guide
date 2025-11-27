@@ -8,6 +8,8 @@ import { interval } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   ngOnInit(): void {
-    interval(1000).subscribe((value) => console.log('Tick value:', value ));
-  } 
+    interval(1000).subscribe({
+      next: (value) => console.log('Tick value:', value )
+  } )
+}
 }
