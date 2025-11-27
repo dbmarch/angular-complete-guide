@@ -1,38 +1,20 @@
-import { Component, ChangeDetectionStrategy, inject, ChangeDetectorRef, OnInit, DestroyRef} from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject} from '@angular/core';
 import { MessagesService } from '../messages.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-messages-list',
   standalone: true,
+  imports: [AsyncPipe],
   templateUrl: './messages-list.component.html',
   styleUrl: './messages-list.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MessagesListComponent implements OnInit {
+export class MessagesListComponent  {
   private messagesService = inject(MessagesService);
-  private cdRef = inject(ChangeDetectorRef);
+  messages$ = this.messagesService.messages$;
 
-  private destroyRef = inject(DestroyRef);
-
-  ngOnInit(): void {
-    this.messagesService.messages$.subscribe((messages) => {
-      this.cdRef.markForCheck();
-      this.messages = messages;
-    });
-
-    // or we can unsubscribe here using the destroyRef
-    this.destroyRef.onDestroy(() => {
-      this.messagesService.messages$.unsubscribe();
-    });
-  }
-
-
-  // Either use ngOnDestroy to unsubscribe
-  ngOnDestroy() {
-    // this.messagesService.messages$.unsubscribe();
-  }
-
-  messages: string[] = [];
+  // messages: string[] = [];
   // messages = this.messagesService.allMessages;
   // get messages() {
   //   return this.messagesService.allMessages;
