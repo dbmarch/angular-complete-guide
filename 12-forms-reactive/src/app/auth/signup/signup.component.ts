@@ -26,7 +26,9 @@ export class SignupComponent {
     if (this.form.invalid) {
       return;
     }
-    
+  }
+  onReset() {
     this.form.reset();
   }
+
 }
