@@ -17,6 +17,15 @@ function emailIsUnique(control:AbstractControl) {
   return of({emailIsNotUnique: true});
 }
 
+// Alternatively we could initialize the form control with the saved value directly.  
+// This gets run one time when the component is created.
+let initialEmailValue = '';
+const savedForm = window.localStorage.getItem('saved-login-form');
+if (savedForm) {
+  const loadedForm = JSON.parse(savedForm);
+  initialEmailValue = loadedForm?.email || '';
+} 
+
 @Component({
   selector: 'app-login',
   standalone: true,
