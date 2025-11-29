@@ -17,8 +17,38 @@ export class SignupComponent {
     }),
     password: new FormControl('', {
       validators: [Validators.required, Validators.minLength(6)]
+    }),
+    confirmPassword: new FormControl('', {
+      validators: [Validators.required, Validators.minLength(6)]
+    }),
+    firstName: new FormControl('', {
+      validators: [Validators.required]
+    }),
+    lastName: new FormControl('', {
+      validators: [Validators.required]
+    }),
+    street: new FormControl('', {
+      validators: [Validators.required]
+    }),
+    number: new FormControl('', {
+      validators: [Validators.required]
+    }),
+    postalCode: new FormControl('', {
+      validators: [Validators.required]
+    }),
+    city: new FormControl('', {
+      validators: [Validators.required]
+    }),   
+    role: new FormControl<'student' | 'teacher' | 'employee' | 'founder' | 'other'> ('other', { 
+      validators: [Validators.required]
+    }),
+    acquisition: new FormControl('other', {
+      validators: [Validators.required]
+    }),
+    terms: new FormControl(false, {
+      validators: [Validators.requiredTrue]
     })
-  })
+  });
 
   onSubmit() {
     console.log ('onSubmit', this.form.value)
@@ -27,7 +57,9 @@ export class SignupComponent {
       return;
     }
   }
+
   onReset() {
+    console.log ("onReset");
     this.form.reset();
   }
 
