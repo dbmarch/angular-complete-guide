@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,4 +10,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class LoginComponent {
 
+
+  onSubmit(formData: NgForm) {
+    if (formData.form.invalid) {
+      return;
+    }
+    console.log(formData);
+    const {email, password} = formData.value;
+    console.log(email, password);
+  }
 }
