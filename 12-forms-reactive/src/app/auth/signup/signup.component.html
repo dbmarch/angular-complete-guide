@@ -134,4 +134,10 @@
     <button type="button" class="button button-flat" (click)="onReset()">Reset</button>
     <button type="submit" class="button">Sign up</button>
   </p>
+
+  @if (form.invalid && form.touched) {
+  <p class="control-error" >
+    Please check the form for errors!
+  </p>
+  }
 </form>
