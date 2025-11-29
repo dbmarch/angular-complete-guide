@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators, AbstractControl} from '@angular/forms';
 import { of } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 function mustContainQuestionMark(control: AbstractControl) {
   if (control.value && control.value.includes('?')) {
@@ -23,7 +24,7 @@ function emailIsUnique(control:AbstractControl) {
   styleUrl: './login.component.css',
   imports: [ReactiveFormsModule]
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   form1 = new FormGroup({
     email: new FormControl('', {
       validators: [Validators.required, Validators.email]
@@ -48,13 +49,24 @@ export class LoginComponent {
             this.form1.controls.password.invalid;
   }
 
+  ngOnInit() {
+    const savedForm = window.localStorage.getItem('saved-login-form');
+    if (savedForm) {
+      const loadedForm = JSON.parse(savedForm);
+      const savedEmail = loadedForm?.email;
+      this.form1.patchValue({email: savedEmail}); // Update the form with saved value
+    }
+    const subscription = this.form1.valueChanges.pipe(debounceTime(500)).subscribe({
+      next: (value) => {
+        window.localStorage.setItem('saved-login-form', JSON.stringify({email: value.email}));  
+      }
+    })
+  }
   onSubmit(formData: FormGroup) {
     // console.log (formData.value);
     const enteredEmail = this.form1.value.email;
     const enteredPassword = this.form1.value.password;
     console.log(enteredEmail, enteredPassword);
-
-
     this.form1.reset();
   }
 }
