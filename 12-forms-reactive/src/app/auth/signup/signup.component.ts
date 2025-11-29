@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormArray} from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -43,15 +43,14 @@ export class SignupComponent {
         validators: [Validators.required]
       }),
     }),
-    role: new FormControl<'student' | 'teacher' | 'employee' | 'founder' | 'other'> ('other', { 
-      validators: [Validators.required]
-    }),
-    acquisition: new FormControl('other', {
-      validators: [Validators.required]
-    }),
-    terms: new FormControl(false, {
-      validators: [Validators.requiredTrue]
-    })
+    role: new FormControl<'student' | 'teacher' | 'employee' | 'founder' | 'other'
+      > ('other', { validators: [Validators.required] }),
+    source: new FormArray([
+      new FormControl(false),
+      new FormControl(false),
+      new FormControl(false),
+    ]),
+    terms: new FormControl(false, {validators: [Validators.required] })
   });
 
   onSubmit() {

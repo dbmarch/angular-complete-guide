@@ -54,10 +54,10 @@
       </div>
     </div>
 
-    <fieldset>
+    <fieldset formGroupName="address">
       <legend>Your Address</legend>
 
-      <div class="control-row" formGroupName="address">
+      <div class="control-row" >
         <div class="control">
           <label for="street">Street</label>
           <input type="text" id="street" name="street" formControlName="street" />
@@ -98,7 +98,7 @@
     </div>
   </div>
 
-  <fieldset>
+  <fieldset FormArrayName="source">
     <legend>How did you find us?</legend>
     <div class="control">
       <input
@@ -106,7 +106,7 @@
         id="google"
         name="acquisition"
         value="google"
-        formControlName="acquisition"
+        formControlName="0"
       />
       <label for="google">Google</label>
     </div>
@@ -117,7 +117,7 @@
         id="friend"
         name="acquisition"
         value="friend"
-        formControlName="acquisition"
+        formControlName="1"
       />
       <label for="friend">Referred by friend</label>
     </div>
@@ -128,7 +128,7 @@
         id="other"
         name="acquisition"
         value="other"
-        formControlName="acquisition"
+        formControlName="2"
       />
       <label for="other">Other</label>
     </div>
