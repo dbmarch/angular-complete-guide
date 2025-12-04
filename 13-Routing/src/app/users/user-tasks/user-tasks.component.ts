@@ -1,6 +1,7 @@
 import { Component, inject, input, computed} from '@angular/core';
 import { UsersService } from '../users.service';
 import { ActivatedRoute } from '@angular/router';
+import { DestroyRef } from '@angular/core';
 
 @Component({
   selector: 'app-user-tasks',
@@ -13,8 +14,10 @@ export class UserTasksComponent {
   userId = input.required<string>();
   private usersService = inject(UsersService);
   private activatedRoute = inject(ActivatedRoute);
+  private destroyRef = inject(DestroyRef);
   userName = '';
 
+  // use computed or paramMap below
   // userName = computed(() => {
   //   const user = this.usersService.users.find(user => user.id === this.userId());
   //   return user ? user.name : 'Unknown User';
@@ -22,11 +25,12 @@ export class UserTasksComponent {
 
   ngOnInit(): void {
     console.log(this.activatedRoute)
-    this.activatedRoute.paramMap.subscribe({
+    const subscription = this.activatedRoute.paramMap.subscribe({
       next: (paramMap) => { 
         this.userName = this.usersService.users.find((u) => u.id === paramMap.get('userId'))?.name || ''
       }
     }
     );
+    this.destroyRef.onDestroy(() => subscription.unsubscribe());
   } 
 }
