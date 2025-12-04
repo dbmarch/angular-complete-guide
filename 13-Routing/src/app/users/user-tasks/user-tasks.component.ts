@@ -1,6 +1,6 @@
 import { Component, inject, input, computed} from '@angular/core';
 import { UsersService } from '../users.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { DestroyRef } from '@angular/core';
 
 @Component({
@@ -8,6 +8,7 @@ import { DestroyRef } from '@angular/core';
   standalone: true,
   templateUrl: './user-tasks.component.html',
   styleUrl: './user-tasks.component.css',
+  imports: [RouterOutlet],
 })
 export class UserTasksComponent {
   // This will be set by angular router
