@@ -16,7 +16,8 @@ export class UserTasksComponent {
   private usersService = inject(UsersService);
   private activatedRoute = inject(ActivatedRoute);
   private destroyRef = inject(DestroyRef);
-  userName = '';
+  userName = ''; // For observable based query params
+  message = input.required<string>();
 
   // use computed or paramMap below
   // userName = computed(() => {
@@ -25,6 +26,7 @@ export class UserTasksComponent {
   // });
 
   ngOnInit(): void {
+    console.log ('message', this.message())
     // snapshot will not change in ngOnInit.  
     // It contains values vs observable.
     console.log(this.activatedRoute.snapshot)
