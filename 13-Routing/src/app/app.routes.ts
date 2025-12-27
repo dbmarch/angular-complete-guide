@@ -3,6 +3,7 @@ import { NoTaskComponent } from "./tasks/no-task/no-task.component";
 import { UserTasksComponent } from "./users/user-tasks/user-tasks.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { routes as userRoutes } from './users/users.routes'
+import { resolveUserName} from './users/user-tasks/user-tasks.component'
 
 export const routes: Routes = [
    {
@@ -15,6 +16,9 @@ export const routes: Routes = [
       children: userRoutes,
       data: {
          message: 'Hello'
+      },
+      resolve: {
+         userName: resolveUserName
       }
    },
    {
