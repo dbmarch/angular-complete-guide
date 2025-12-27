@@ -18,8 +18,8 @@ export class UserTasksComponent {
   
   // not needed with resolve user name.
   // private usersService = inject(UsersService);
-  // private activatedRoute = inject(ActivatedRoute);
-  // private destroyRef = inject(DestroyRef);
+  private activatedRoute = inject(ActivatedRoute);
+  private destroyRef = inject(DestroyRef);
   // userName = ''; // For observable based query params
   
   // use computed or paramMap below
@@ -29,8 +29,14 @@ export class UserTasksComponent {
   // });
 
 // This is not needed if we use resolveUserName
-//   ngOnInit(): void {
-//     console.log ('message', this.message())
+ngOnInit(): void {
+    const subscription =this.activatedRoute.data.subscribe({
+      next: data => {
+      // To view both static and dynamic data ( if not using inputs)
+        console.log(data);
+      }
+    })
+
 //     // snapshot will not change in ngOnInit.  
 //     // It contains values vs observable.
 //     console.log(this.activatedRoute.snapshot)
@@ -40,12 +46,12 @@ export class UserTasksComponent {
 //       }
 //     }
 //     );
-//     this.destroyRef.onDestroy(() => subscription.unsubscribe());
-//   } 
+     this.destroyRef.onDestroy(() => subscription.unsubscribe());
+  } 
 }
 
 
-// This simplifies the user component
+// This simplifies the user component by supplying the data via a dynamic data field
 export const resolveUserName: ResolveFn<string> = (
       activatedRoute: ActivatedRouteSnapshot, 
       routeState: RouterStateSnapshot
