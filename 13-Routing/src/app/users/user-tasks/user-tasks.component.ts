@@ -25,7 +25,9 @@ export class UserTasksComponent {
   // });
 
   ngOnInit(): void {
-    console.log(this.activatedRoute)
+    // snapshot will not change in ngOnInit.  
+    // It contains values vs observable.
+    console.log(this.activatedRoute.snapshot)
     const subscription = this.activatedRoute.paramMap.subscribe({
       next: (paramMap) => { 
         this.userName = this.usersService.users.find((u) => u.id === paramMap.get('userId'))?.name || ''
