@@ -17,7 +17,7 @@ export class UserTasksComponent {
   private activatedRoute = inject(ActivatedRoute);
   private destroyRef = inject(DestroyRef);
   userName = ''; // For observable based query params
-  message = input.required<string>();
+  message = input.required<string>(); // use the same name as in the data field of the static route.
 
   // use computed or paramMap below
   // userName = computed(() => {
