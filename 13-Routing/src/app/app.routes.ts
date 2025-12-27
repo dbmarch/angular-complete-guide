@@ -3,12 +3,13 @@ import { NoTaskComponent } from "./tasks/no-task/no-task.component";
 import { UserTasksComponent } from "./users/user-tasks/user-tasks.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
 import { routes as userRoutes } from './users/users.routes'
-import { resolveUserName} from './users/user-tasks/user-tasks.component'
+import { resolveUserName, resolveTitle} from './users/user-tasks/user-tasks.component'
 
 export const routes: Routes = [
    {
       path: '',
-      component: NoTaskComponent
+      component: NoTaskComponent,
+      title: 'No Task Selected'
    },
    {
       path: 'users/:userId', 
@@ -17,9 +18,11 @@ export const routes: Routes = [
       data: {
          message: 'Hello'
       },
+      runGuardsAndResolvers: 'paramsOrQueryParamsChange',
       resolve: {
          userName: resolveUserName
-      }
+      },
+      title: resolveTitle,
    },
    {
       path: '**',
