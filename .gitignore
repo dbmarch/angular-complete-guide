@@ -7,6 +7,8 @@
 /.angular/
 .angular/
 
+**/dist/
+
 # Node modules and dependency files
 **/node_modules/
 /package-lock.json
